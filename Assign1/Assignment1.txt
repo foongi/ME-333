@@ -1,0 +1,114 @@
+Ethan Foong
+
+1. Code
+2.  A pointer is a variable that points to another variable (basically it is the address
+    of another variable in memory.) The way that they are different than other variables
+    is that while regular variables hold the exact data they represent, pointer variables
+    hold the address of another variable which contains whatever exact data you need. 
+    As a result, to use pointer variables, you need to tell the compiler (with a *variable_name)
+    that you want the value the pointer is pointing to, not the value of the address of the pointer.
+
+3.  The difference between interpreted and compiled code is that compiled code has a compiling
+    stage where a compiler goes through and interprets the code you've written, making optimizations,
+    giving warnings, and telling you what errors or warnings you might have. With interpreted code,
+    the computer interprets the code (again throwing errors if necessary) while the code is running
+    so it will take 1 line of code, interpret it, and convert it to machine code. This makes the code
+    slower because the computer can't make as many optimizations and also must do all the code
+    interpretation during the runtime.
+
+4.  a: 
+        binary: 0001 1110   MSB = 0 
+        decimal: 30
+    b:
+        binary: 0011 0010   MSB = 0
+        decimal: 50
+    c:
+        binary: 1111 1110   MSB = 1
+        decimal (if unsigned): 254  (if signed): -2
+    d:
+        binary: 1100 0100   MSB = 1
+        decimal (if unsigned): 196  (if signed): -60
+
+
+6.  2^16 memory spots * 1 byte for each * 8 bits/byte = 525288 bits
+7.  a:  the assignment is equivalent to ch = 107;
+    b:  the assignment is equivalent to ch = 53;
+    c:  ch = 61;
+    d:  ch = 63;
+
+8.  unsigned char: 0 to 255
+    short: 65535 to -65536
+    double, depends how it is defined. the actual representation can be from 
+    -infinity to infinity. 
+    However, if we only consider real #s, it depends on the architecture and how 
+    many bytes a double is defined as. For example, if a double is 8 bytes like
+    in x86, the range is about 1.7*10^-308 to 1.7*10^308.
+
+10. Unsigned integers cannot represent negative numbers. Signed integers use the
+    most significant bit of the # to represent a negative number of the same magnitude
+    of the MSB of unsigned integers. As a result signed integers can represent both
+    negative and postive numbers, splitting the possible number combinations (1s and 0s) 
+    between negative and positive
+
+11. a. The pros of using chars are that they are much smaller so less computation time and
+    hardware is needed to compute arithmetic with them. However, integers have the pro
+    that they can represent a larger range of numbers which is important if you need to work
+    with large numbers. Another difference is that usually ints are signed while chars are 
+    unsigned so if you need to work with negatives you usually work with ints rather than
+    signed chars (which represent even smaller #s than regular chars).
+    b. There is a similar situation with floats and doubles. Floats are smaller and in turn
+    faster, but they don't have as much precision or range as doubles. Doubles are larger and
+    better for general purpose uses and ones that need high precision or a large range of numbers
+    however they are slower than floats and require more hardware.
+    c. For integer math, chars are most often better as they can exactly represent all integers
+    in their small range. This makes it much faster to add integers (using integer math) rather 
+    than having to convert floating point numbers to the same exponent and try to add them. In 
+    addition, because floats are not exact, there are possible rounding errors. Floats do have 
+    a higher range though, they are just slow and inaccurrate. 
+
+16. Since pointers occupy 8 bytes, the most similar data types to pointers are probably
+    long ints (or long long ints in PIC32) because these data types are also 8 bytes, and
+    can likely be converted 1 to 1 from integers to integers in hex (which are just pointer
+    addresses). For example, if you had a long int k = 32, you could convert it into a pointers
+    and it would point to address 32. Compare this to doubles which are also 8 bytes, but 
+    have a weird bit split between the sign bit, exponent bits, and fraction bits which is
+    quite different than pointers.
+
+17. a) all memory contents unknown
+    b)
+        all memory contents unknown except:
+        kp  (0xB8) = 0xB0
+    c)
+        kp  (0xB8) = 0xB0
+        j   (0xB4-0xB7) is still unknown b/c it gets the value of i which is unknown
+    d)
+        kp  (0xB8) = 0xB0
+        i   (0xB0) = 0xAE
+            (0xB1) = 0x00
+            (0xB2) = 0x00
+            (0xB3) = 0x00
+    e) 
+        i   (0xB0) = 0xAE
+            (0xB1) = 0x00
+            (0xB2) = 0x00
+            (0xB3) = 0x00
+        kp  (0xB8) = 0xB0
+        np  (0xB9) = 0xB0
+    f)
+        i   (0xB0) = 0x12
+            (0xB1) = 0x00
+            (0xB2) = 0x00
+            (0xB3) = 0x00
+        kp  (0xB8) = 0xB0
+        np  (0xB9) = 0xB0
+    g)
+        i   (0xB0) = 0x12
+            (0xB1) = 0x00
+            (0xB2) = 0x00
+            (0xB3) = 0x00
+        j   (0xB4) = 0x12
+            (0xB5) = 0x00
+            (0xB6) = 0x00
+            (0xB7) = 0x00
+        kp  (0xB8) = 0xB0
+        np  (0xB9) = 0xB0
